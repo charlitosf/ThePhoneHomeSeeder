@@ -31,8 +31,7 @@ const generator = async function() {
                 username: faker.name.firstName(),
                 password: faker.fake(randomStr),
                 email: faker.internet.email(),
-                banned: faker.random.boolean(),
-                group_id: faker.random.number(1) + 1
+                group_id: faker.random.number(2) + 1
             }
             users.push(user);
         }
