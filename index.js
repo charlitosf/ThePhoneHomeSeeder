@@ -12,9 +12,9 @@ const knex = require('knex')({
     },
     useNullAsDefault: true
 });
-const CREATE_USERS = false;
-const CREATE_COMPANIES = false;
-const CREATE_PRODUCTS = false;
+const CREATE_USERS = true;
+const CREATE_COMPANIES = true;
+const CREATE_PRODUCTS = true;
 const CREATE_INVOCES = true;
 const CREATE_PRODUCT_INVOICES = true;
 
@@ -83,7 +83,7 @@ const generator = async function() {
                 id: i,
                 date: faker.date.past(),
                 user_id: faker.random.number(99) + 10,
-                creditcardnumber: faker.fake(creditCard)
+                credit_card_number: faker.fake(creditCard)
             }
             invoices.push(invoice);
         }
@@ -106,6 +106,7 @@ const generator = async function() {
         
         await knex('product_invoice').insert(products).then((res) => console.log(res)).catch((err) => console.log(err));
     }
+    process.exit(0);
 }
 
 generator();
