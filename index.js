@@ -1,5 +1,5 @@
-const faker = require('faker/locale/es');
 require('dotenv').config();
+const faker = require('faker/locale/' + process.env.LOCALE);
 
 const knex = require('knex')({
     client: 'pg',
@@ -12,11 +12,11 @@ const knex = require('knex')({
     },
     useNullAsDefault: true
 });
-const CREATE_USERS = process.env.CREATE_USERS || false;
-const CREATE_COMPANIES = process.env.CREATE_COMPANIES || false;
-const CREATE_PRODUCTS = process.env.CREATE_PRODUCTS || false;
-const CREATE_INVOCES = process.env.CREATE_INVOICES || false;
-const CREATE_PRODUCT_INVOICES = process.env.CREATE_PRODUCT_INVOICES || false;
+const CREATE_USERS = (process.env.CREATE_USERS === "true") || false;
+const CREATE_COMPANIES = (process.env.CREATE_COMPANIES === "true") || false;
+const CREATE_PRODUCTS = (process.env.CREATE_PRODUCTS === "true") || false;
+const CREATE_INVOICES = (process.env.CREATE_INVOICES === "true") || false;
+const CREATE_PRODUCT_INVOICES = (process.env.CREATE_PRODUCT_INVOICES === "true") || false;
 
 const generator = async function() {
     if (CREATE_USERS) {
@@ -72,7 +72,7 @@ const generator = async function() {
         await knex('product').insert(products).then((res) => console.log(res)).catch((err) => console.log(err));
     }
 
-    if (CREATE_INVOCES) {
+    if (CREATE_INVOICES) {
         let invoices = [];
         for (let i = 0; i < 100; i++) {
             let creditCard = "4";
