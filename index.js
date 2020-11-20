@@ -12,11 +12,11 @@ const knex = require('knex')({
     },
     useNullAsDefault: true
 });
-const CREATE_USERS = true;
-const CREATE_COMPANIES = true;
-const CREATE_PRODUCTS = true;
-const CREATE_INVOCES = true;
-const CREATE_PRODUCT_INVOICES = true;
+const CREATE_USERS = process.env.CREATE_USERS || false;
+const CREATE_COMPANIES = process.env.CREATE_COMPANIES || false;
+const CREATE_PRODUCTS = process.env.CREATE_PRODUCTS || false;
+const CREATE_INVOCES = process.env.CREATE_INVOICES || false;
+const CREATE_PRODUCT_INVOICES = process.env.CREATE_PRODUCT_INVOICES || false;
 
 const generator = async function() {
     if (CREATE_USERS) {
